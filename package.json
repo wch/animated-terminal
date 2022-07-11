@@ -9,7 +9,9 @@
   },
   "scripts": {
     "build": "ts-node build.ts",
-    "build-prod": "ts-node build.ts --prod"
+    "build-prod": "ts-node build.ts --prod",
+    "serve": "ts-node build.ts --serve",
+    "clean": "rm -f build/*.js build/*.css"
   },
   "devDependencies": {
     "@types/node": "^18.0.3",

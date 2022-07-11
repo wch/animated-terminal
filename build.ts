@@ -1,9 +1,9 @@
 import esbuild from "esbuild";
-import * as fs from "fs";
+import fs from "fs";
 import process from "process";
-import * as path from "path";
 
 let watch = false;
+let serve = false;
 let minify = false;
 let reactProductionMode = false;
 // Set this to true to generate a metadata file that can be analyzed for size of
@@ -12,6 +12,10 @@ const metafile = false;
 
 if (process.argv.some((x) => x === "--watch")) {
   watch = true;
+}
+if (process.argv.some((x) => x === "--serve")) {
+  watch = true;
+  serve = true;
 }
 if (process.argv.some((x) => x === "--prod")) {
   minify = true;
@@ -37,7 +41,7 @@ esbuild
   .build({
     logLevel: "info",
     bundle: true,
-    entryPoints: ["src/index.tsx"],
+    entryPoints: ["src/App.tsx", "src/AnimatedTerminal.tsx"],
     outdir: `build/`,
     format: "esm",
     target: "es2020",
@@ -49,24 +53,6 @@ esbuild
         : '"development"',
     },
     ...watchProp,
-    plugins: [
-      // {
-      //   name: "preact-compat",
-      //   setup(build) {
-      //     const preact = path.join(
-      //       process.cwd(),
-      //       "node_modules",
-      //       "preact",
-      //       "compat",
-      //       "dist",
-      //       "compat.module.js"
-      //     );
-      //     build.onResolve({ filter: /^(react-dom|react)$/ }, (args) => {
-      //       return { path: preact };
-      //     });
-      //   },
-      // },
-    ],
   })
   .then((result) => {
     if (metafile) {
@@ -74,3 +60,7 @@ esbuild
     }
   })
   .catch(() => process.exit(1));
+
+if (serve) {
+  esbuild.serve({ servedir: "build/", port: 3002 }, {});
+}
