@@ -41,11 +41,15 @@ esbuild
   .build({
     logLevel: "info",
     bundle: true,
-    entryPoints: ["src/App.tsx", "src/AnimatedTerminal.tsx"],
+    entryPoints: [
+      // "src/App.tsx",
+      "src/AnimatedTerminal.tsx",
+    ],
     outdir: `build/`,
     format: "esm",
     target: "es2020",
     minify: minify,
+    outExtension: minify ? { ".js": ".min.js", ".css": ".min.css" } : {},
     metafile: metafile,
     define: {
       "process.env.NODE_ENV": reactProductionMode
