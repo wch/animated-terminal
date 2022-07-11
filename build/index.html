@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="AnimatedTerminal.css" />
     <script type="module">
       import animatedTerminal from "./AnimatedTerminal.js";
+
       const spinnerFrames = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
       const spinnerLines = [
         {
@@ -37,6 +38,7 @@
           cmd: false,
         },
       ];
+
       animatedTerminal(document.getElementById("root"), spinnerLines);
     </script>
   </head>
