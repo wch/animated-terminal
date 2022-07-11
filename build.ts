@@ -67,5 +67,6 @@ esbuild
   .catch(() => process.exit(1));
 
 if (serve) {
+  console.log("Listening at http://127.0.0.1:3002");
   esbuild.serve({ servedir: "build/", port: 3002 }, {});
 }
