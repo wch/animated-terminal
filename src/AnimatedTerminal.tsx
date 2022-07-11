@@ -7,6 +7,7 @@ import { createRoot } from "preact/compat/client";
 
 import Terminal, { RendererProps } from "@nitric/react-animated-term";
 import "@nitric/react-animated-term/css/styles.css";
+import "./style.css";
 
 export default function animatedTerminal(
   element: HTMLElement,
