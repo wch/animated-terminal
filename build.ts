@@ -51,6 +51,7 @@ esbuild
     minify: minify,
     outExtension: minify ? { ".js": ".min.js", ".css": ".min.css" } : {},
     metafile: metafile,
+    preserveSymlinks: true,
     define: {
       "process.env.NODE_ENV": reactProductionMode
         ? '"production"'
